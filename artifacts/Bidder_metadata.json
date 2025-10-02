@@ -1,0 +1,85 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "bidAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "eligible",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/M0i3XUTQEei2HRICdYDggg_3372867044d011e8b870a3398eee9397_BidderData.sol": "Bidder"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/M0i3XUTQEei2HRICdYDggg_3372867044d011e8b870a3398eee9397_BidderData.sol": {
+			"keccak256": "0x53849fd28cd1695abf94cf2586118b0f61b532c934c0c07094096795344cb5c4",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://4da54193fb3c66ed0177b611dc30921d3a5202eda41cca3ad57756e86dc3d674",
+				"dweb:/ipfs/QmVXNt2aUrEoEAxyJfvcNEwXuHyHGT6t1L8Ua3XDHpmeKa"
+			]
+		}
+	},
+	"version": 1
+}
