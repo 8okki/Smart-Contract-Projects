@@ -6,10 +6,7 @@ contract Escrow {
     address private arbiter;
     address private buyer;
     address private seller;
-
-    uint public targetAmount;
-    bool private isFunded;
-    bool private isReleased;
+    uint public immutable targetAmount;
 
     enum Stage {Init, Funded, Released, Canceled}
     Stage public currentStage;
@@ -30,6 +27,10 @@ contract Escrow {
         require(currentStage == _requiredStage);
         _;
     }
+    modifier checkFund() {
+        require(address(this).balance >= targetAmount);
+        _;
+    }
 
     /**
     * @param _seller Address of the seller account that offers item to the buyer
@@ -37,6 +38,7 @@ contract Escrow {
     * @param _targetAmount Amount that needs to be deposited by the buyer
     */
     constructor(address _seller, address _buyer, uint _targetAmount) {
+        require(msg.sender != _seller && msg.sender != _buyer && _targetAmount > 0);
         arbiter = msg.sender;
         seller = _seller;
         buyer = _buyer;
@@ -44,18 +46,33 @@ contract Escrow {
         currentStage = Stage.Init;
     }
 
-    function deposit() public isBuyer checkStage(Stage.Init) {
+    function deposit() public payable isBuyer checkStage(Stage.Init) {
+        require(msg.value == targetAmount, "Value doesn't match required amount");
+        currentStage = Stage.Funded;
     }
 
-    function confirmDelivery() public isBuyer checkStage(Stage.Funded) {
+    function confirmDelivery() public isBuyer checkStage(Stage.Funded) checkFund {
+        sendValue(seller, "Releasing escrow to the seller");
+        currentStage = Stage.Released;
     }
 
-    function refundBuyer() public isArbiter checkStage(Stage.Funded) {
+    function refundBuyer() public isArbiter checkStage(Stage.Funded) checkFund {
+        sendValue(buyer, "Refunding escrow back to the buyer");
+        currentStage = Stage.Canceled;
     }
 
-    function releaseToSeller() public isArbiter checkStage(Stage.Funded) {
+    function releaseToSeller() public isArbiter checkStage(Stage.Funded) checkFund {
+        sendValue(seller, "Manually releasing escrow to the seller");
+        currentStage = Stage.Released;
     }
 
     function getBalance() public view returns (uint balance_) {
+        return address(this).balance;
     }
+
+    function sendValue(address recipient, bytes memory message) private {
+        (bool success, ) = recipient.call{value: targetAmount}(message);
+        require(success, "Transfer failed");
+    }
+
 }

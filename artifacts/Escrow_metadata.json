@@ -50,7 +50,7 @@
 				"inputs": [],
 				"name": "deposit",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -130,11 +130,11 @@
 	},
 	"sources": {
 		"contracts/Escrow.sol": {
-			"keccak256": "0x40e9e8d737d17bc7be90546fe0775b2b0de41f2c6e6fa2b4325940c8fba5b257",
+			"keccak256": "0x130db641262182be0bae881181c9001e696d5c1953c24ab2c21d34eeb450d9f9",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://ba4904dda75472f5b253fc2c4057e9c653651f84345af401e524d93e2a64efc6",
-				"dweb:/ipfs/QmQHuTQ3cvHGL5HTZFaKCA1YbDuQCsXPZuH5qAMfJqkFEA"
+				"bzz-raw://cdde3eb75912792108c975932b4473819e79bdea3a30f2b963cb364945eef475",
+				"dweb:/ipfs/QmW3ZnyA9q1fnaFaUgZTQwHWA3H59XSZtj5KNq7xSAVBqx"
 			]
 		}
 	},
