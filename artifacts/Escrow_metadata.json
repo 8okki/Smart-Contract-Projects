@@ -130,11 +130,11 @@
 	},
 	"sources": {
 		"contracts/Escrow.sol": {
-			"keccak256": "0x130db641262182be0bae881181c9001e696d5c1953c24ab2c21d34eeb450d9f9",
+			"keccak256": "0xdc86af68ea20717b380e607f4585340f8b83b6dc8d43aa6dc190d6b59ebbf56c",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://cdde3eb75912792108c975932b4473819e79bdea3a30f2b963cb364945eef475",
-				"dweb:/ipfs/QmW3ZnyA9q1fnaFaUgZTQwHWA3H59XSZtj5KNq7xSAVBqx"
+				"bzz-raw://5d1502e6dcca4dcb111860577804aff7fc41a27aa260436c0a64ba7d0f99754d",
+				"dweb:/ipfs/QmZmq5DsE327BaNW5VDUAz7qbpQC4jZPVs6rsVh9kDSz6b"
 			]
 		}
 	},

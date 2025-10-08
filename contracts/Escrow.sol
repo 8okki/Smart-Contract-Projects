@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0
+
 pragma solidity >=0.8.0 < 0.9.0;
 
 contract Escrow {
@@ -6,7 +7,7 @@ contract Escrow {
     address private arbiter;
     address private buyer;
     address private seller;
-    uint public immutable targetAmount;
+    uint public targetAmount;
 
     enum Stage {Init, Funded, Released, Canceled}
     Stage public currentStage;
@@ -51,17 +52,17 @@ contract Escrow {
         currentStage = Stage.Funded;
     }
 
-    function confirmDelivery() public isBuyer checkStage(Stage.Funded) checkFund {
+    function confirmDelivery() public isBuyer checkStage(Stage.Funded) {
         sendValue(seller, "Releasing escrow to the seller");
         currentStage = Stage.Released;
     }
 
-    function refundBuyer() public isArbiter checkStage(Stage.Funded) checkFund {
+    function refundBuyer() public isArbiter checkStage(Stage.Funded) {
         sendValue(buyer, "Refunding escrow back to the buyer");
         currentStage = Stage.Canceled;
     }
 
-    function releaseToSeller() public isArbiter checkStage(Stage.Funded) checkFund {
+    function releaseToSeller() public isArbiter checkStage(Stage.Funded) {
         sendValue(seller, "Manually releasing escrow to the seller");
         currentStage = Stage.Released;
     }
@@ -70,9 +71,8 @@ contract Escrow {
         return address(this).balance;
     }
 
-    function sendValue(address recipient, bytes memory message) private {
+    function sendValue(address recipient, bytes memory message) private checkFund {
         (bool success, ) = recipient.call{value: targetAmount}(message);
         require(success, "Transfer failed");
     }
-
 }
